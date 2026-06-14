@@ -33,7 +33,7 @@ st.markdown(
     ##### by *Sachika J*
     """
 )
-st.write("Upload PDF documents and chat with them.")
+st.write("Upload PDF documents and chat with them!")
 
 # -----------------------
 # Sidebar
