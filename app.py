@@ -55,6 +55,7 @@ if "uploaded_files_key" not in st.session_state:
 
 if current_files != st.session_state.uploaded_files_key:
     st.session_state.vectorstore = None
+    st.session_state.messages = []
     st.session_state.uploaded_files_key = current_files
 
 if uploaded_files:
@@ -94,6 +95,7 @@ if uploaded_files and st.session_state.vectorstore is None:
         st.success(
             "Vector database created!"
         )
+        
 # -----------------------
 # Chat History
 # -----------------------
