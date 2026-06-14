@@ -44,6 +44,18 @@ uploaded_files = st.sidebar.file_uploader(
     type=["pdf"],
     accept_multiple_files=True
 )
+current_files = (
+    tuple(file.name for file in uploaded_files)
+    if uploaded_files
+    else ()
+)
+
+if "uploaded_files_key" not in st.session_state:
+    st.session_state.uploaded_files_key = None
+
+if current_files != st.session_state.uploaded_files_key:
+    st.session_state.vectorstore = None
+    st.session_state.uploaded_files_key = current_files
 
 if uploaded_files:
     st.sidebar.success(
@@ -54,22 +66,20 @@ if uploaded_files:
 # Build Vector Database
 # -----------------------
 
-if uploaded_files:
+if uploaded_files and st.session_state.vectorstore is None:
 
     all_docs = []
 
     for uploaded_file in uploaded_files:
-
         docs = load_pdf(uploaded_file)
         all_docs.extend(docs)
 
     chunks = chunk_documents(all_docs)
 
     with st.spinner("Creating vector database..."):
-
-        vectorstore = create_vectorstore(chunks)
-
-    st.session_state.vectorstore = vectorstore
+        st.session_state.vectorstore = create_vectorstore(
+            chunks
+        )
 
     with st.expander("System Info"):
 
@@ -84,7 +94,6 @@ if uploaded_files:
         st.success(
             "Vector database created!"
         )
-
 # -----------------------
 # Chat History
 # -----------------------

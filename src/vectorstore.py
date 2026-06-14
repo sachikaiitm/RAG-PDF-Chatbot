@@ -11,7 +11,6 @@ def create_vectorstore(chunks):
     vectorstore = Chroma.from_documents(
         documents=chunks,
         embedding=embeddings,
-        persist_directory="./chroma_db"
     )
 
     return vectorstore
