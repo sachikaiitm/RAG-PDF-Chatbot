@@ -43,6 +43,19 @@ A Retrieval-Augmented Generation (RAG) chatbot that allows users to upload PDF d
 
 ## 📂 Project Workflow
 
+```mermaid
+graph TD
+    A[PDF Upload] --> B[PyPDFLoader]
+    B --> C[Chunking]
+    C --> D[Embeddings]
+    D --> E[ChromaDB]
+    E --> F[Retriever]
+    F --> G[Groq LLM]
+    G --> H[Answer + Sources]
+```
+
+## 📂 Project Workflow
+
 1. Upload PDF documents
 2. Extract text from PDFs
 3. Split documents into chunks
@@ -134,6 +147,21 @@ streamlit run app.py
 * LLM integration using APIs
 * Streamlit deployment
 * Git and GitHub workflows
+
+## Challenges Faced
+
+- Handling PDF uploads dynamically
+- Preventing stale vector databases from persisting across sessions
+- Tracking document source metadata for citations
+- Deploying HuggingFace embeddings on Streamlit Cloud
+
+## Future Improvements
+
+- Conversational memory
+- Hybrid search
+- Re-ranking
+- OCR support for scanned PDFs
+- Multi-user document collections
 
 ## 👤 Author
 
