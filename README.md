@@ -54,8 +54,7 @@ graph TD
     G --> H[Answer + Sources]
 ```
 
-## 📂 Project Workflow
-
+```
 1. Upload PDF documents
 2. Extract text from PDFs
 3. Split documents into chunks
@@ -64,6 +63,7 @@ graph TD
 6. Retrieve relevant chunks based on user queries
 7. Generate answers using an LLM
 8. Display answers with sources
+```
 
 ## 🏗️ Project Structure
 
